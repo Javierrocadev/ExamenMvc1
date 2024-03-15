@@ -1,0 +1,43 @@
+﻿@model List<Zapatilla>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // $("#contenidoempleados").load("/Coches/_CochesPartial");
+            $(".btn-zapatilla").click(function () {
+                var idZapatilla = $(this).data("id");
+                //Zapatillas / DetailsPartial ? idproducto = 1
+                var request = "/Paginacion/_ImagenesZapatillaAjaxPartial?idzapatilla=" + idZapatilla;
+              
+                alert(request);
+                // Enviar la solicitud AJAX _EmpleadosDepartamentoAjaxPartial
+                $.ajax({
+                    url: request,
+                    type: "GET",
+                    success: function (response) {
+                        // Mostrar la respuesta en el contenedor
+                        $("#contenidozapatillas").html(response);
+                    }
+                });;
+            });
+        });
+    </script>
+}
+
+
+<h1>Practica Paginacion Empleados Departamento</h1>
+
+<ul class="list-group">
+    @foreach (Zapatilla zap in Model)
+    {
+        <li class="list-group-item">
+            <button class="btn-zapatilla" data-id="@zap.IdZapatilla">
+                @zap.Nombre
+            </button>
+        </li>
+    }
+</ul>
+
+<div id="contenidozapatillas"></div>
+

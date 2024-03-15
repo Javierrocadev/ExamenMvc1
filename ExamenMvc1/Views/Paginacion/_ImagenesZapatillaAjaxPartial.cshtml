@@ -1,0 +1,69 @@
+﻿@model Imagen
+
+@{
+    Zapatilla zapatilla =
+            ViewData["ZAPATILLASELECCIONADO"] as Zapatilla;
+}
+
+<h1>ZAPATILLA</h1>
+
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-dark">
+        Id zapatilla: @zapatilla.IdZapatilla
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Nombre: @zapatilla.Nombre
+    </li>
+    <li class="list-group-item list-group-item-info">
+        Precio: @zapatilla.Precio
+    </li>
+</ul>
+
+<h2 style="color:blue">
+    Registro @ViewData["POSICION"] de @ViewData["REGISTROS"]
+</h2>
+
+<div>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <a asp-controller="Paginacion"
+               asp-action="ImagenesZapatilla"
+               asp-route-posicion="1"
+               asp-route-idzapatilla="@ViewData["ZAPATILLA"]">
+                Primero
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Paginacion"
+               asp-action="ImagenesZapatilla"
+               asp-route-posicion="@ViewData["ANTERIOR"]"
+               asp-route-idzapatilla="@ViewData["ZAPATILLA"]">
+                Anterior
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Paginacion"
+               asp-action="ImagenesZapatilla"
+               asp-route-posicion="@ViewData["SIGUIENTE"]"
+               asp-route-idzapatilla="@ViewData["ZAPATILLA"]">
+                Siguiente
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a asp-controller="Paginacion"
+               asp-action="ImagenesZapatilla"
+               asp-route-posicion="@ViewData["ULTIMO"]"
+               asp-route-idzapatilla="@ViewData["ZAPATILLA"]">
+                Ultimo
+            </a>
+        </li>
+    </ul>
+</div>
+<hr />
+<ul class="list-group">
+    
+    <li class="list-group-item list-group-item-info">
+        <img src="@Model.ImagenImagen">
+    </li>
+</ul>
